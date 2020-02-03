@@ -32,7 +32,7 @@ I tried setting up CSMA LAN and Wi-Fi as ns-3 channel. According to ns-3's [offi
 
 There are four components required to connect external Linux-based system to ns-3. These four components should be connected one-by-one in a chain. I will explain them in an order from external system to ns-3 environment.
 
-* **External Linux system.** This is the hardware system to include in the loop, which is a Raspberry Pi in our setup. I will use Pi to refer to this hardware piece. The rest configurations and ns-3 environment is running on another host. Pi and host are connected through an Ethernet cable. Therefore, we need to set a static IP for the Ethernet interface on the Pi. 
+* **External Linux system.** This is the hardware system to include in the loop, which is a Raspberry Pi in our setup. I will use Pi to refer to this hardware piece. The rest configurations and ns-3 environment is running on another host. Our host is a Linux desktop. Pi and host are connected through an Ethernet cable. Therefore, we need to set a static IP for the Ethernet interface on the Pi. 
 * **OS Bridge configured by [`brctl`](https://linux.die.net/man/8/brctl) tool.** Software bridge is a piece of software that glues up two network interfaces. In this way, packets arriving at one interface will be forwarded to the other one, which makes a separate computer feel like it joins a larger network. In our case, we use the bridge to fuse `eth0` and `tap0`.
 * **Tap Interface configured by [`tunctl`](https://linux.die.net/man/8/tunctl) tool.** Tap interfaces are virtual Ethernet interfaces that do not have any physical device associated with them. In our case, these virtual interfaces act as entry and exit points for the traffic going to and coming from the simulations. The Tap interfaces would appear to the Linux host as if they are real interfaces connected to it. 
 * **TapBridge Module in ns-3.** TapBridge is a module that can be installed on a ns-3 node, as shown above. It provides a mechanism for exchanging packets between ns-3 simulation and the host. Specifically, when the traffic is sent from the host to a Tap interface, it is received by the TapBridge that transforms the arriving real packets to simulated packets by making a write operation inside the ns-3 simulation. On the other hand, when the TapBridge receives the simulated packets from the ns-3 simulation, it transforms the arriving simulated packets to real packets by making a write operation on the tap interface.
@@ -40,7 +40,7 @@ There are four components required to connect external Linux-based system to ns-
 
 ## Environment Setup
 
-* Install package `uml-utilities` and `bridge-utilities` to use `tunctl` and `brctl`.
+* Install package `uml-utilities` and `bridge-utilities` to use `tunctl` and `brctl` on host.
 
   ```shell
   sudo apt-get install uml-utilities bridge-utilities
@@ -64,7 +64,7 @@ There are four components required to connect external Linux-based system to ns-
   static domain_name_servers=10.1.1.1
   ```
 
-* Copy the all codes in the `scripts` folder except `br-set.sh` to the Pi. Assume we place them right in the home directory.
+* Copy the all codes in the `scripts` folder except `br-set.sh` to the Pi. 
 
 ## Run the Experiment
 
