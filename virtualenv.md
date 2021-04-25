@@ -71,7 +71,7 @@ To deactivate a virtual environment type:
 deactivate
 ```
 
-### Useful commands
+### Useful tips
 
 * Export a list of all installed packages and their versions
 
@@ -86,6 +86,8 @@ python3 -m pip freeze > requirements.txt
   `cdsitepackages`: Like the above, but directly into `site-packages` directory.
 
   `lssitepackages`: Shows contents of `site-packages` directory.
+
+* Follow this [guide](https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html) to configure virtual environment in PyCharm.
 
 ### Resources
 
