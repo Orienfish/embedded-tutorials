@@ -7,7 +7,7 @@ All commands in this tutorial are for macOS and Linux platforms.
 * Install `virtualenv` and virtual `wrapper`
 
 ```bash
-python3 -m pip install --user virtualenv virtualwrapper
+python3 -m pip install --user virtualenv virtualenvwrapper
 ```
 
 ### Create a virtual environment under a Python project
