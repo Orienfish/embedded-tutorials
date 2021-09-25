@@ -1,4 +1,4 @@
-# Install PyTorch GPU Support
+# Install NVIDIA GPU Driver on Linux
 
 ## Set up on Manjaro Linux
 
@@ -48,18 +48,43 @@
 
     * Download official NVIDIA driver from [website](https://www.nvidia.com/Download/index.aspx).
 
-    * 
+    * Install prerequisites. First we detect the currently kernel version:
+
+      ```bash
+      $ uname -r
+      5.4.116-1-MANJARO
+      ```
+
+      Then we can go on to install the kernel headers and development tools:
+
+      ```bash
+      sudo pacman -S linux54-headers
+      sudo pacman -S base-devel dkms
+      ```
+
+    * Next we will disable the default `nouveau` drivers, as required in manual installation of NVIDIA driver. We edit the `/etc/default/grub` configuration file, locate the line starting with `GRUB_CMDLINE_LINUX` and include the following code: `nouveau.modeset=0`. After the modification, the line should be like:
+
+      ```
+      GRUB_CMDLINE_LINUX="nouveau.modeset=0"
+      ```
+
+      Then we update the grub via `sudo update-grub` and reboot the system.
+
+    * Next we begin the actual installation of NVIDIA driver:
+
+      ```bash
+      sudo bash NVIDIA-Linux-x86_64-xx.run
+      ```
+
+      Reboot after completion
 
   * Simply run `nvidia-smi` to confirm a successful installation.
 
-* To simplify installation and avoid library conflicts, the official tensorflow website recommends using a [TensorFlow Docker image with GPU support](https://www.tensorflow.org/install/docker).
-
-  * [Install docker]
-  * 
-
-### Resources
+## Resources
 
 [Tensorflow GPU Support](https://www.tensorflow.org/install/gpu)
 
 [How to install the NVIDIA drivers on Manjaro Linux](https://linuxconfig.org/how-to-install-the-nvidia-drivers-on-manjaro-linux)
+
+[NVIDIA graphics driver installation documentation on Manjaro](https://github.com/imbarismustafa/manjaro-nvidia)
 
