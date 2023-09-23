@@ -51,6 +51,12 @@ docker run --name <container_name> -d -i -t ljiang98/fedthe_iclr2023:latest /bin
 
 The `-d` option (shorthand for `--detach`) sets the container to run in the background, in detached mode, with a pseudo-TTY attached (`-t`). The `-i` option is set to keep `STDIN` attached (`-i`), which prevents the `sh` process from exiting immediately. There are two alternative ways to keep the container running: [here](docker run -d -t ljiang98/fedthe_iclr2023:latest).
 
+If you want to access the GPUs from the container:
+
+```bash
+docker run --gpus all --name <container_name> -d -i -t ljiang98/fedthe_iclr2023:latest /bin/sh
+```
+
 Check the list of running container:
 
 ```bash
@@ -82,3 +88,7 @@ docker rm <container_name>
 [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 
 [Manjaro Linux Docker installation](https://linuxconfig.org/manjaro-linux-docker-installation)
+
+[How to Use GPU from a Docker Container](https://saturncloud.io/blog/how-to-use-gpu-from-a-docker-container-a-guide-for-data-scientists-and-software-engineers/)
+
+[Installing the NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
