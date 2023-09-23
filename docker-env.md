@@ -46,15 +46,35 @@ docker pull ljiang98/fedthe_iclr2023:latest
 * Run the container from image and keep the container running
 
 ```bash
-docker run -d -t ljiang98/fedthe_iclr2023:latest
+docker run --name <container_name> -d -i -t ljiang98/fedthe_iclr2023:latest /bin/sh
 ```
 
-Two otherways to keep the container running: [here](docker run -d -t ljiang98/fedthe_iclr2023:latest)
+The `-d` option (shorthand for `--detach`) sets the container to run in the background, in detached mode, with a pseudo-TTY attached (`-t`). The `-i` option is set to keep `STDIN` attached (`-i`), which prevents the `sh` process from exiting immediately. There are two alternative ways to keep the container running: [here](docker run -d -t ljiang98/fedthe_iclr2023:latest).
 
-* Execute additional commands in the container:
+Check the list of running container:
+
+```bash
+docker ps    # show the running containers
+docker ps -a # show all containers including the stop containers
+```
+
+* Start an interactive `sh` shell on the container:
+
+```bash
+docker exec -it <container_name> sh
+```
+
+Or, execute additional commands in the container:
 
 ```bash
 docker exec -it <container_name> sh -c "echo a && echo b"
+```
+
+* Stop and remove the container
+
+```bash
+docker stop <container_name>
+docker rm <container_name>
 ```
 
 ### Resources
