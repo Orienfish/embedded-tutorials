@@ -4,7 +4,9 @@ The goal of this tutorial is to set up your own Docker environment on your machi
 
 ## Set up docker on Ubuntu Linux
 
-Environment: Ubuntu 20.04 LTS
+* Environment: 
+  * Ubuntu 20.04 LTS
+  * Docker
 
 ## Set up docker on Manjaro Linux
 
@@ -33,9 +35,30 @@ sudo docker info
 sudo usermod -aG docker $USER
 ```
 
-* 
+## Quick Start from Pulled Image
+
+* Pull the built image from online
+
+```bash
+docker pull ljiang98/fedthe_iclr2023:latest
+```
+
+* Run the container from image and keep the container running
+
+```bash
+docker run -d -t ljiang98/fedthe_iclr2023:latest
+```
+
+Two otherways to keep the container running: [here](docker run -d -t ljiang98/fedthe_iclr2023:latest)
+
+* Execute additional commands in the container:
+
+```bash
+docker exec -it <container_name> sh -c "echo a && echo b"
+```
 
 ### Resources
 
-[Manjaro Linux Docker installation](https://linuxconfig.org/manjaro-linux-docker-installation)
+[Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 
+[Manjaro Linux Docker installation](https://linuxconfig.org/manjaro-linux-docker-installation)
